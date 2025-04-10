@@ -1,0 +1,75 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center"
+    android:background="@android:color/white">
+
+    <!-- Nhập số điện thoại -->
+
+    <!-- Nút gửi mã OTP -->
+    <EditText
+        android:id="@+id/edtPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:layout_marginBottom="16dp"
+        android:hint="Nhập số điện thoại"
+        android:inputType="phone"
+        android:padding="12dp"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btnSendOtp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gửi mã OTP"
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:textColor="@android:color/white" />
+
+    <!-- View nhập mã OTP: ban đầu ẩn -->
+    <LinearLayout
+        android:id="@+id/otpLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_marginTop="32dp">
+
+        <TextView
+            android:id="@+id/tvPhoneDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mã xác nhận đã gửi tới: "
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Nhập mã OTP: 6 ô -->
+        <LinearLayout
+            android:id="@+id/otpContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="24dp">
+
+            <EditText android:id="@+id/etOtp1" style="@style/OtpEditTextStyle"/>
+            <EditText android:id="@+id/etOtp2" style="@style/OtpEditTextStyle"/>
+            <EditText android:id="@+id/etOtp3" style="@style/OtpEditTextStyle"/>
+            <EditText android:id="@+id/etOtp4" style="@style/OtpEditTextStyle"/>
+            <EditText android:id="@+id/etOtp5" style="@style/OtpEditTextStyle"/>
+            <EditText android:id="@+id/etOtp6" style="@style/OtpEditTextStyle"/>
+        </LinearLayout>
+
+        <!-- Nút xác minh -->
+        <Button
+            android:id="@+id/btnVerifyOtp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Xác minh"
+            android:backgroundTint="@android:color/holo_orange_dark"
+            android:textColor="@android:color/white"/>
+    </LinearLayout>
+</LinearLayout>

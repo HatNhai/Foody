@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "476315680436",
+    "project_id": "my-foody-64httt03",
+    "storage_bucket": "my-foody-64httt03.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476315680436:android:1bb3d038ea1baffc6821e1",
+        "android_client_info": {
+          "package_name": "vn.edu.tlu.cse.ht.nhaivu.foodorderapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPrXHCQcPweRRQyYUiXluF7L-vc5uPAMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
