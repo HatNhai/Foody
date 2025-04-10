@@ -51,7 +51,7 @@
             android:layout_marginBottom="8dp">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="311dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Thông tin cụ thể"
@@ -60,7 +60,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="change"
                 android:textColor="#FF6600"
                 android:textSize="14sp" />
@@ -68,8 +68,8 @@
 
         <!-- Address Box -->
         <LinearLayout
-            android:layout_width="363dp"
-            android:layout_height="238dp"
+            android:layout_width="366dp"
+            android:layout_height="211dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/bg_box"
             android:orientation="vertical"
@@ -113,8 +113,8 @@
 
         <RadioGroup
             android:id="@+id/rgDelivery"
-            android:layout_width="361dp"
-            android:layout_height="113dp"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:orientation="vertical">
 
@@ -123,14 +123,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:buttonTint="#FF6600"
-                android:text="Door delivery" />
+                android:text="Thanh toán khi nhận hàng" />
 
             <RadioButton
                 android:id="@+id/rbPickUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:buttonTint="#FF6600"
-                android:text="Pick up" />
+                android:text="Ví điện tử (Momo/VnPay/ZaloPay)" />
+
+            <RadioButton
+                android:id="@+id/rbOther"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="#FF6600"
+                android:text="Phương thức khác" />
         </RadioGroup>
 
         <!-- Total Price -->
@@ -165,7 +172,7 @@
             android:layout_marginTop="8dp"
             android:backgroundTint="#FF5722"
             android:paddingVertical="12dp"
-            android:text="Tiếp tục thanh toán"
+            android:text="Đặt hàng"
             android:textColor="#FFFFFF"
             android:textStyle="bold" />
     </LinearLayout>
