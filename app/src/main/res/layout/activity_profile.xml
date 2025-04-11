@@ -1,6 +1,356 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Scrollable content -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+            <ImageView
+                android:id="@+id/ivLauncher"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Thông tin cá nhân"
+                android:textColor="#000000"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivLauncher" />
+
+            <TextView
+                android:id="@+id/tvDetailLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thông tin chi tiết"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                app:layout_constraintTop_toBottomOf="@id/tvHeader"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="24dp" />
+
+            <TextView
+                android:id="@+id/tvChange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thay đổi"
+                android:textSize="15sp"
+                android:textColor="#FA4A0C"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvDetailLabel"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Card for personal info -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardPersonal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/tvDetailLabel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+
+                    <ImageView
+                        android:id="@+id/ivAvatar"
+                        android:layout_width="101dp"
+                        android:layout_height="154dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/ic_launcher_background"
+                        android:contentDescription="Avatar"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_launcher_foreground"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/edtFullName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:background="@android:drawable/edit_text"
+                        android:hint="Họ và tên"
+                        android:padding="8dp"
+                        android:text="Trần Thị Huệ"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@id/ivAvatar"
+                        app:layout_constraintTop_toTopOf="@id/ivAvatar" />
+
+                    <EditText
+                        android:id="@+id/edtEmail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Email"
+                        android:text="nhaivu.2004@gmail.com"
+                        android:textSize="15sp"
+                        android:textColor="#000000"
+                        android:background="@android:drawable/edit_text"
+                        android:padding="8dp"
+                        app:layout_constraintTop_toBottomOf="@id/edtFullName"
+                        app:layout_constraintStart_toStartOf="@id/edtFullName"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="8dp" />
+
+                    <!-- Divider -->
+                    <View
+                        android:id="@+id/divider1"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:background="#000000"
+                        app:layout_constraintTop_toBottomOf="@id/edtEmail"
+                        app:layout_constraintStart_toStartOf="@id/edtFullName"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="8dp" />
+
+                    <!-- Số điện thoại -->
+                    <EditText
+                        android:id="@+id/edtPhone"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Số điện thoại"
+                        android:text="+84 359474777"
+                        android:textSize="15sp"
+                        android:textColor="#000000"
+                        android:inputType="phone"
+                        android:background="@android:drawable/edit_text"
+                        android:padding="8dp"
+                        app:layout_constraintTop_toBottomOf="@id/divider1"
+                        app:layout_constraintStart_toStartOf="@id/edtFullName"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="8dp" />
+
+                    <!-- Divider -->
+                    <View
+                        android:id="@+id/divider2"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:background="#000000"
+                        app:layout_constraintTop_toBottomOf="@id/edtPhone"
+                        app:layout_constraintStart_toStartOf="@id/edtFullName"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="8dp" />
+
+                    <!-- Địa chỉ -->
+                    <EditText
+                        android:id="@+id/edtAddress"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Địa chỉ"
+                        android:text="219 Định Công Thượng, Định Công, Hoàng Mai, Hà Nội."
+                        android:textSize="15sp"
+                        android:textColor="#000000"
+                        android:inputType="textPostalAddress"
+                        android:background="@android:drawable/edit_text"
+                        android:padding="8dp"
+                        app:layout_constraintTop_toBottomOf="@id/divider2"
+                        app:layout_constraintStart_toStartOf="@id/edtFullName"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="16dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Lịch sử mua hàng -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardHistory"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/cardPersonal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tvHistory"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Lịch sử mua hàng"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000" />
+
+                    <ImageView
+                        android:id="@+id/ivHistoryIcon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/chevron_left_1" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Đánh giá đơn hàng -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardReview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@id/cardHistory"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tvReview"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Đánh giá đơn hàng"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000" />
+
+                    <ImageView
+                        android:id="@+id/ivReviewIcon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/chevron_left_1" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Frag -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardFrag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@id/cardReview"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tvFrag"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Frag"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000" />
+
+                    <ImageView
+                        android:id="@+id/ivFragIcon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/chevron_left_1" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Help -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardHelp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintTop_toBottomOf="@id/cardFrag"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tvHelp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Help"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000" />
+
+                    <ImageView
+                        android:id="@+id/ivHelpIcon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/chevron_left_1" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Đăng xuất"
+                android:textAllCaps="false"
+                android:backgroundTint="#FF5722"
+                android:textColor="#FFFFFF"
+                android:padding="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/cardHelp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
