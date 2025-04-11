@@ -45,6 +45,7 @@ public class ProfileActivity extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
     private static final String IMGUR_CLIENT_ID = "Client-ID c7b4cac19778339";
     private EditText edtFullName, edtEmail, edtPhone, edtAddress;
+    private CardView cardReview, cardFrag, cardHelp;
     private TextView tvChange;
     private Button btnLogout;
     private ImageView ivAvatar;
@@ -65,6 +66,9 @@ public class ProfileActivity extends AppCompatActivity {
         tvChange = findViewById(R.id.tvChange);
         ivAvatar = findViewById(R.id.ivAvatar);
         btnLogout = findViewById(R.id.btnLogout);
+        cardReview = findViewById(R.id.cardReview);
+        cardFrag = findViewById(R.id.cardFrag);
+        cardHelp = findViewById(R.id.cardHelp);
 
         mAuth = FirebaseAuth.getInstance();
         profileRef = FirebaseDatabase.getInstance().getReference("profile");
@@ -93,6 +97,29 @@ public class ProfileActivity extends AppCompatActivity {
             Intent intent = new Intent(ProfileActivity.this, HistoryActivity.class);
             startActivity(intent);
         });
+
+        //MESSAGE 3 chuc nang
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int id = v.getId();
+                String message = "";
+
+                if (id == R.id.cardReview) {
+                    message = "Đánh giá đơn hàng - chức năng chưa phát triển";
+                } else if (id == R.id.cardFrag) {
+                    message = "Frag - chức năng chưa phát triển";
+                } else if (id == R.id.cardHelp) {
+                    message = "Help - chức năng chưa phát triển";
+                }
+
+                Toast.makeText(ProfileActivity.this, message, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        cardReview.setOnClickListener(listener);
+        cardFrag.setOnClickListener(listener);
+        cardHelp.setOnClickListener(listener);
 
         String userId = mAuth.getCurrentUser().getUid();
         loadUserProfile(userId); // ✅ Load thông tin đã lưu (gồm cả avatar)
