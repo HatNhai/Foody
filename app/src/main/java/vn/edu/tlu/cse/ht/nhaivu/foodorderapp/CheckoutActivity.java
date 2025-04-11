@@ -64,14 +64,15 @@ public class CheckoutActivity extends AppCompatActivity {
             // Tạo đơn hàng mới trong Orders
             DatabaseReference orderRef = FirebaseDatabase.getInstance()
                     .getReference("Orders")
-                    .child(userId)
-                    .push();
+                    .push(); // ✅ Tạo key tự động để phù hợp cấu trúc
 
+            // ✅ Lưu thông tin đơn hàng kèm uid
+            orderRef.child("uid").setValue(userId);
             orderRef.child("name").setValue(name);
             orderRef.child("address").setValue(address);
             orderRef.child("phone").setValue(phone);
             orderRef.child("totalAmount").setValue(totalAmount);
-            orderRef.child("status").setValue("Pending");
+            orderRef.child("status").setValue("Hoàn thành");
 
             // Lấy dữ liệu từ giỏ hàng và thêm vào đơn hàng
             DatabaseReference cartRef = FirebaseDatabase.getInstance()

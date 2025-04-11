@@ -45,6 +45,16 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         Glide.with(context)
                 .load(food.getImage())
                 .into(holder.imgFood);
+        holder.itemView.setOnClickListener(v -> {
+            // Tạo Intent để chuyển đến ProductDetailActivity
+            Intent intent = new Intent(context, ProductDetailActivity.class);
+
+            // Truyền đối tượng FoodItem vào intent
+            intent.putExtra("food", food);  // Truyền dữ liệu FoodItem
+
+            // Khởi chạy ProductDetailActivity
+            context.startActivity(intent);
+        });
 
         //Lắng nghe sự kiện khi ấn vào món ăn
         holder.itemView.setOnClickListener(v -> {

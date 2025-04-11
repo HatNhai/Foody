@@ -7,6 +7,8 @@ public class FoodItem implements Serializable {
     private String description;
     private String image;
     private int price;private int quantity = 1;
+    private String category;
+    public boolean is_favorite;
 
 
 
@@ -14,12 +16,14 @@ public class FoodItem implements Serializable {
         // Constructor rỗng cho Firebase
     }
 
-    public FoodItem(String id, String name, String description, String image, int price) {
+    public FoodItem(String id, String name, String description, String image, int price,String category,boolean is_favorite) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.image = image;
         this.price = price;
+        this.category = category;
+        this.is_favorite = is_favorite;
     }
 
     // Getter & Setter
@@ -70,4 +74,14 @@ public class FoodItem implements Serializable {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+    public boolean is_favorite() { return is_favorite;}
+
+    public void setIs_favorite(boolean is_favorite) { this.is_favorite = is_favorite;}
 }
