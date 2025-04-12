@@ -42,39 +42,50 @@
         android:layout_marginStart="44dp"
         android:layout_marginTop="8dp"
         android:text="Delicious\nfood for you"
+        android:textColor="@android:color/holo_orange_dark"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:textColor="@android:color/holo_orange_dark"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/topBar" />
 
-    <EditText
+    <!--    Tab layout-->
+    <AutoCompleteTextView
         android:id="@+id/edtSearch"
         android:layout_width="310dp"
         android:layout_height="50dp"
         android:layout_margin="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/bg_search"
         android:drawablePadding="12dp"
         android:hint="Search"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
+        android:textSize="16sp"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.411"
+        app:layout_constraintHorizontal_bias="0.435"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle" />
-
-<!--    Tab layout-->
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="27dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/edtSearch"
+        app:layout_constraintHorizontal_bias="0.904"
+        app:layout_constraintStart_toStartOf="@+id/edtSearch"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        app:srcCompat="@drawable/ic_search" />
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         app:layout_constraintTop_toBottomOf="@id/edtSearch"
-        app:tabIndicatorHeight="5dp"
         app:tabIndicatorColor="@android:color/holo_orange_dark"
-        app:tabTextColor="@android:color/darker_gray"
-        app:tabSelectedTextColor="@android:color/holo_orange_dark">
+        app:tabIndicatorHeight="5dp"
+        app:tabSelectedTextColor="@android:color/holo_orange_dark"
+        app:tabTextColor="@android:color/darker_gray">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tabUuDai"
@@ -108,7 +119,7 @@
 
     </com.google.android.material.tabs.TabLayout>
 
-<!--    RecyclerView-->
+    <!--    RecyclerView-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFoodList"
@@ -131,10 +142,12 @@
         android:layout_marginBottom="4dp"
         app:itemIconTint="@color/selector_nav"
         app:itemTextColor="@color/selector_nav"
+        app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_nav_menu" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
