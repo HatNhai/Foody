@@ -8,6 +8,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,7 +41,6 @@ public class HomeActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ImageView cartIcon;
 
-    // === Bổ sung cho tìm kiếm ===
     private AutoCompleteTextView edtSearch;
     private ImageView imgSearch;
     private List<FoodItem> allFoodItems = new ArrayList<>();
@@ -53,17 +54,34 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rvFoodList);
         bottomNav = findViewById(R.id.bottomNav);
         tabLayout = findViewById(R.id.tabLayout);
-        cartIcon = findViewById(R.id.cartIcon); // ánh xạ giỏ hàng
-        edtSearch = findViewById(R.id.edtSearch); // ánh xạ ô tìm kiếm
-        imgSearch = findViewById(R.id.imageView3); // biểu tượng tìm kiếm
+        cartIcon = findViewById(R.id.cartIcon);
+        edtSearch = findViewById(R.id.edtSearch);
+        imgSearch = findViewById(R.id.imageView3);
+        ImageView menuIcon = findViewById(R.id.menuIcon); // ánh xạ menu icon
 
         // Sự kiện click giỏ hàng
-        cartIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, CartActivity.class);
-                startActivity(intent);
-            }
+        cartIcon.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, CartActivity.class);
+            startActivity(intent);
+        });
+
+        // Sự kiện click menu icon để hiện popup logout
+        menuIcon.setOnClickListener(v -> {
+            PopupMenu popupMenu = new PopupMenu(HomeActivity.this, v);
+            popupMenu.getMenuInflater().inflate(R.menu.menu_home, popupMenu.getMenu());
+
+            popupMenu.setOnMenuItemClickListener(item -> {
+                if (item.getItemId() == R.id.item_logout) {
+                    FirebaseAuth.getInstance().signOut();
+                    Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            });
+
+            popupMenu.show();
         });
 
         // Setup RecyclerView
@@ -74,24 +92,18 @@ public class HomeActivity extends AppCompatActivity {
 
         // Load mặc định
         loadDataFromFirebase("Ưu đãi");
-        // Tải tất cả món ăn để dùng cho tìm kiếm
         loadAllFoodItems();
 
-        // Sự kiện khi chọn tab
+        // Tab chọn danh mục
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 String tabTitle = tab.getText().toString();
-                loadDataFromFirebase(tabTitle);  // Tên tab trùng tên nhánh trong Firebase
+                loadDataFromFirebase(tabTitle);
             }
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-            }
+            @Override public void onTabUnselected(TabLayout.Tab tab) { }
+            @Override public void onTabReselected(TabLayout.Tab tab) { }
         });
 
         // Navigation bar
@@ -138,8 +150,6 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-
-    // === Load toàn bộ dữ liệu món ăn để dùng cho tìm kiếm ===
     private void loadAllFoodItems() {
         DatabaseReference menuRef = FirebaseDatabase.getInstance().getReference("menu");
         menuRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -154,7 +164,7 @@ public class HomeActivity extends AppCompatActivity {
                         }
                     }
                 }
-                setupSearchFunctionality(); // ✅ thiết lập sau khi có danh sách
+                setupSearchFunctionality();
             }
 
             @Override
@@ -164,7 +174,6 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    // === Thiết lập chức năng tìm kiếm và gợi ý ===
     private void setupSearchFunctionality() {
         List<String> foodNames = new ArrayList<>();
         for (FoodItem item : allFoodItems) {
@@ -175,7 +184,6 @@ public class HomeActivity extends AppCompatActivity {
         edtSearch.setAdapter(searchAdapter);
         edtSearch.setThreshold(1);
 
-        // ✅ Khi chọn 1 gợi ý từ danh sách, chuyển sang SearchResultActivity
         edtSearch.setOnItemClickListener((parent, view, position, id) -> {
             String selectedName = (String) parent.getItemAtPosition(position);
             Intent intent = new Intent(HomeActivity.this, SearchResultActivity.class);
@@ -183,7 +191,6 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // ✅ Khi nhấn Enter để tìm kiếm
         edtSearch.setOnEditorActionListener((TextView v, int actionId, KeyEvent event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH ||
                     (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN)) {
@@ -193,7 +200,6 @@ public class HomeActivity extends AppCompatActivity {
             return false;
         });
 
-        // Khi nhấn vào biểu tượng tìm kiếm
         imgSearch.setOnClickListener(v -> {
             String keyword = edtSearch.getText().toString().trim();
             if (!keyword.isEmpty()) {
@@ -204,11 +210,8 @@ public class HomeActivity extends AppCompatActivity {
                 Toast.makeText(this, "Nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 
-    // === Tìm kiếm và cập nhật danh sách món ăn ===
     private void performSearch(String keyword) {
         List<FoodItem> resultList = new ArrayList<>();
         for (FoodItem item : allFoodItems) {
