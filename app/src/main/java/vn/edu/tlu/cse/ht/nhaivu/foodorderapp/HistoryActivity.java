@@ -41,7 +41,8 @@ public class HistoryActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btnBack);
 
         orderList = new ArrayList<>();
-        orderAdapter = new OrderAdapter(this, orderList);
+        orderAdapter = new OrderAdapter(this, orderList, this::loadOrders);
+
 
         rvOrderHistory.setLayoutManager(new LinearLayoutManager(this));
         rvOrderHistory.setAdapter(orderAdapter);
@@ -66,6 +67,7 @@ public class HistoryActivity extends AppCompatActivity {
                             for (DataSnapshot orderSnap : snapshot.getChildren()) {
                                 Order order = orderSnap.getValue(Order.class);
                                 if (order != null) {
+                                    order.id = orderSnap.getKey();
                                     orderList.add(order);
                                 }
                             }

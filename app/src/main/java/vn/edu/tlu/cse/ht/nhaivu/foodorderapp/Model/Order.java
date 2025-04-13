@@ -2,6 +2,7 @@ package vn.edu.tlu.cse.ht.nhaivu.foodorderapp.Model;
 
 import java.util.Map;
 public class Order {
+    public String id;
     public String name;
     public String address;
     public String phone;
@@ -10,9 +11,11 @@ public class Order {
     public Map<String, OrderedItem> items;
     public String uid; // 👈 Thêm dòng này
 
+    public Review review;
+
     public Order() {}
 
-    public Order(String name, String address, String phone, long totalAmount, String status, Map<String, OrderedItem> items, String uid) {
+    public Order(String name, String address, String phone, long totalAmount, String status, Map<String, OrderedItem> items, String uid, Review review) {
         this.name = name;
         this.address = address;
         this.phone = phone;
@@ -20,6 +23,7 @@ public class Order {
         this.status = status;
         this.items = items;
         this.uid = uid;
+        this.review = review;
     }
 }
 

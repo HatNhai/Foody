@@ -62,6 +62,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             intent.putExtra("food", foodList.get(position)); // truyền món ăn được click
             context.startActivity(intent);
         });
+        if (food.getAvgRating() > 0) {
+            holder.tvRating.setText("★ " + String.format("%.1f", food.getAvgRating()) +
+                    " (" + food.getReviewCount() + " đánh giá)");
+        } else {
+            holder.tvRating.setText("Chưa có đánh giá");
+        }
+
     }
 
     @Override
@@ -71,7 +78,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
     public static class FoodViewHolder extends RecyclerView.ViewHolder {
         ImageView imgFood;
-        TextView tvName, tvPrice, tvDesc;
+        TextView tvName, tvPrice, tvDesc, tvRating;
+
 
         public FoodViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,6 +87,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             tvName = itemView.findViewById(R.id.tvFoodName);
             tvPrice = itemView.findViewById(R.id.tvFoodPrice);
             tvDesc = itemView.findViewById(R.id.tvFoodDesc);
+            tvRating = itemView.findViewById(R.id.tvRating);
         }
     }
 }

@@ -101,7 +101,7 @@ public class HomeActivity extends AppCompatActivity {
             if (id == R.id.nav_home) {
                 return true;
             } else if (id == R.id.nav_favorite) {
-                startActivity(new Intent(this, FavoriteActivity.class));
+                startActivity(new Intent(this,  FavoriteActivity.class));
                 return true;
             } else if (id == R.id.nav_history) {
                 startActivity(new Intent(this, HistoryActivity.class));

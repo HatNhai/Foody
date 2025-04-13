@@ -9,6 +9,8 @@ public class FoodItem implements Serializable {
     private int price;private int quantity = 1;
     private String category;
     public boolean is_favorite;
+    private float avgRating;     // ⭐ trung bình đánh giá
+    private int reviewCount;     // 📊 số lượng đánh giá
 
 
 
@@ -84,4 +86,19 @@ public class FoodItem implements Serializable {
     public boolean is_favorite() { return is_favorite;}
 
     public void setIs_favorite(boolean is_favorite) { this.is_favorite = is_favorite;}
+    public float getAvgRating() {
+        return avgRating;
+    }
+
+    public void setAvgRating(float avgRating) {
+        this.avgRating = avgRating;
+    }
+
+    public int getReviewCount() {
+        return reviewCount;
+    }
+
+    public void setReviewCount(int reviewCount) {
+        this.reviewCount = reviewCount;
+    }
 }
