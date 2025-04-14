@@ -23,5 +23,6 @@
         android:id="@+id/btnSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_orange_dark"
         android:text="Gửi đánh giá" />
 </LinearLayout>

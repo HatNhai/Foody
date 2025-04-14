@@ -20,6 +20,7 @@
             android:text="Gửi đánh giá"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/holo_orange_dark"
             android:layout_marginTop="16dp"/>
     </LinearLayout>
 
